@@ -8,14 +8,62 @@
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; }
         
-        /* Siber Arka Plan */
+        /* Siber Arka Plan ve Kıvılcım Alanı kapsayıcısı */
         body { 
             background-color: #050508; 
-            background-image: linear-gradient(rgba(18, 18, 26, 0.5) 1px, transparent 1px), linear-gradient(90deg, rgba(18, 18, 26, 0.5) 1px, transparent 1px);
+            background-image: linear-gradient(rgba(18, 18, 26, 0.4) 1px, transparent 1px), linear-gradient(90deg, rgba(18, 18, 26, 0.4) 1px, transparent 1px);
             background-size: 20px 20px;
             color: #f1f5f9; 
             text-align: center; 
             padding: 80px 20px 180px 20px; 
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        /* Kıvılcım (Ateş) Efekti Katmanı */
+        .fireflies {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .spark {
+            position: absolute;
+            background: linear-gradient(to top, #ff4500, #ffaa00);
+            border-radius: 50%;
+            filter: drop-shadow(0 0 6px #ff4500);
+            animation: floatUp linear infinite;
+            opacity: 0;
+        }
+
+        /* Her bir kıvılcım için farklı hız ve boyut animasyonları */
+        .spark:nth-child(1) { left: 10%; width: 4px; height: 4px; animation-duration: 8s; animation-delay: 1s; }
+        .spark:nth-child(2) { left: 25%; width: 6px; height: 6px; animation-duration: 12s; animation-delay: 0s; }
+        .spark:nth-child(3) { left: 40%; width: 3px; height: 3px; animation-duration: 7s; animation-delay: 3s; }
+        .spark:nth-child(4) { left: 55%; width: 5px; height: 5px; animation-duration: 10s; animation-delay: 2s; }
+        .spark:nth-child(5) { left: 70%; width: 4px; height: 4px; animation-duration: 9s; animation-delay: 5s; }
+        .spark:nth-child(6) { left: 85%; width: 6px; height: 6px; animation-duration: 14s; animation-delay: 1s; }
+        .spark:nth-child(7) { left: 15%; width: 5px; height: 5px; animation-duration: 11s; animation-delay: 4s; }
+        .spark:nth-child(8) { left: 45%; width: 4px; height: 4px; animation-duration: 8s; animation-delay: 6s; }
+        .spark:nth-child(9) { left: 65%; width: 3px; height: 3px; animation-duration: 6s; animation-delay: 2s; }
+        .spark:nth-child(10) { left: 90%; width: 5px; height: 5px; animation-duration: 13s; animation-delay: 0s; }
+
+        @keyframes floatUp {
+            0% { transform: translateY(105vh) translateX(0) scale(1); opacity: 0; }
+            10% { opacity: 0.8; }
+            50% { transform: translateY(50vh) translateX(20px) scale(1.2); }
+            90% { opacity: 0.8; }
+            100% { transform: translateY(-5vh) translateX(-10px) scale(0.5); opacity: 0; }
+        }
+
+        /* İçeriklerin kıvılcımların üstünde kalması için z-index ayarı */
+        h1, .subtitle, .container, .pricing-title, .pricing-container {
+            position: relative;
+            z-index: 10;
         }
         
         /* Neon Başlık Alanı */
@@ -97,6 +145,19 @@
     </style>
 </head>
 <body>
+
+    <div class="fireflies">
+        <div class="spark"></div>
+        <div class="spark"></div>
+        <div class="spark"></div>
+        <div class="spark"></div>
+        <div class="spark"></div>
+        <div class="spark"></div>
+        <div class="spark"></div>
+        <div class="spark"></div>
+        <div class="spark"></div>
+        <div class="spark"></div>
+    </div>
 
     <h1>BLAZING SAILS PREMIUM</h1>
     <div class="subtitle">STATUS: <span>UNDETECTED</span> // PRIVATE BUILD 2026</div>
