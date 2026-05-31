@@ -35,10 +35,10 @@
             100% { transform: translateY(-5vh) translateX(-10px) scale(0.5); opacity: 0; }
         }
 
-        /* Animasyonlar */
-        @keyframes lookAround { 0%, 100% { transform: translateX(0); } 25% { transform: translateX(-5px); } 75% { transform: translateX(5px); } }
-        @keyframes shootArrow { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.3) rotate(45deg); } }
-        @keyframes shieldHit { 0%, 100% { transform: rotate(0deg); } 25% { transform: rotate(-15deg); } 50% { transform: rotate(15deg); } }
+        /* --- YENİ EKLENEN ANİMASYONLAR --- */
+        @keyframes eyeLook { 0%, 100% { transform: translate(0, 0); } 25% { transform: translate(-4px, -3px); } 50% { transform: translate(4px, 0); } 75% { transform: translate(0, 4px); } }
+        @keyframes arrowHit { 0% { transform: scale(1) translateX(0); } 30% { transform: scale(1.3) translateX(8px); } 100% { transform: scale(1) translateX(0); } }
+        @keyframes shieldSwordHit { 0% { transform: rotate(0deg); } 20% { transform: rotate(-25deg) translateX(-6px); } 40% { transform: rotate(20deg); } 60% { transform: rotate(-15deg); } 100% { transform: rotate(0deg); } }
 
         .lang-switcher { position: absolute; top: 25px; right: 25px; z-index: 1000; display: flex; gap: 10px; background: #0d0d13; border: 1px solid #1e293b; padding: 6px; border-radius: 10px; }
         .lang-btn { background: transparent; border: none; color: #64748b; font-size: 13px; font-weight: bold; cursor: pointer; padding: 6px 12px; border-radius: 6px; transition: all 0.3s ease; }
@@ -54,9 +54,9 @@
         .card h3 { color: #ef4444; margin-bottom: 15px; font-size: 22px; font-weight: 700; display: flex; align-items: center; gap: 10px; }
         
         /* Animasyon tetikleyicileri */
-        .card:hover .icon-eye { animation: lookAround 0.6s infinite; }
-        .card:hover .icon-target { animation: shootArrow 0.6s infinite; }
-        .card:hover .icon-shield { animation: shieldHit 0.6s infinite; }
+        .card:hover .icon-eye { animation: eyeLook 1.8s infinite ease-in-out; display: inline-block; }
+        .card:hover .icon-target { animation: arrowHit 0.5s infinite ease-out; display: inline-block; }
+        .card:hover .icon-shield { animation: shieldSwordHit 0.7s infinite; display: inline-block; }
 
         .status-container { display: flex; justify-content: center; gap: 20px; margin-bottom: 25px; flex-wrap: wrap; }
         .status-item { background: #0f0f16; border: 1px solid #1e293b; padding: 8px 16px; border-radius: 30px; font-size: 12px; font-weight: bold; display: flex; align-items: center; gap: 8px; }
@@ -67,27 +67,14 @@
         .specs-container { max-width: 700px; margin: 0 auto 60px auto; background: #0d0d13; border: 1px solid #1e293b; border-radius: 16px; padding: 25px; text-align: left; }
         .spec-row { display: flex; justify-content: space-between; padding: 12px 0; border-bottom: 1px solid #1a202c; font-size: 14px; }
         
-        .reviews-container { display: flex; flex-wrap: wrap; justify-content: center; gap: 20px; max-width: 1000px; margin: 0 auto 60px auto; }
-        .review-card { background: #0b0b10; border: 1px solid #141b27; border-radius: 12px; padding: 20px; width: 300px; text-align: left; }
-        
-        .faq-container { max-width: 700px; margin: 0 auto 80px auto; text-align: left; display: flex; flex-direction: column; gap: 15px; }
-        .faq-item { background: #0d0d13; border: 1px solid #1e293b; border-radius: 12px; padding: 20px; }
-        
         .pricing-container { display: flex; flex-wrap: wrap; justify-content: center; gap: 35px; max-width: 900px; margin: 0 auto; }
         .price-card { background: linear-gradient(145deg, #0e0e14, #151522); border: 2px solid #1e293b; border-radius: 20px; padding: 45px 35px; width: 360px; transition: all 0.4s ease; }
         .price-card:hover { transform: scale(1.03); }
-        .price-card.student { border-color: #3b82f6; }
         .price-card.vip { border-color: #ef4444; position: relative; }
         .badge { position: absolute; top: 15px; right: 15px; background: #ef4444; color: #fff; font-size: 11px; padding: 4px 10px; border-radius: 20px; }
         .btn { display: block; width: 100%; padding: 15px; text-decoration: none; font-weight: bold; border-radius: 10px; transition: all 0.3s ease; text-transform: uppercase; margin-top: 20px; }
         .btn-blue { background: #3b82f6; color: #fff; }
         .btn-red { background: #ef4444; color: #fff; }
-
-        .video-box, .discord-box { position: fixed; bottom: 25px; width: 300px; background: #0d0d13; border: 2px solid #1e293b; border-radius: 14px; padding: 15px; z-index: 1000; }
-        .video-box { right: 25px; }
-        .discord-box { left: 25px; }
-        .video-placeholder { height: 150px; background: #161622; border: 1px dashed #334155; margin-top: 10px; display: flex; align-items: center; justify-content: center; }
-        .discord-btn { display: block; background: #5865F2; padding: 10px; color: white; text-decoration: none; border-radius: 8px; margin-top: 10px; }
     </style>
 </head>
 <body>
@@ -101,16 +88,6 @@
 
     <h1 id="main-title">BLAZING SAILS PREMIUM</h1>
     <div class="subtitle" id="main-sub">STATUS: <span>UNDETECTED</span> // PRIVATE BUILD 2026</div>
-
-    <div class="status-container">
-        <div class="status-item"><div class="status-dot"></div> <span id="status-1">ANTICHEAT BYPASS: ACTIVE</span></div>
-        <div class="status-item"><div class="status-dot"></div> <span id="status-2">CHEAT LOADER: UPDATED</span></div>
-        <div class="status-item"><div class="status-dot"></div> <span id="status-3">HWID LOCK SYSTEM: SECURE</span></div>
-    </div>
-
-    <div class="live-sales">
-        <div id="sales-text">User GhostRider** just purchased VIP Access via Discord Bot!</div>
-    </div>
 
     <div class="container">
         <div class="card">
@@ -127,46 +104,17 @@
         </div>
     </div>
 
-    <div class="pricing-title" id="pricing-head">CHOOSE YOUR SUBSCRIPTION</div>
-    <div class="pricing-container">
-        <div class="price-card student">
-            <h4 id="p1-title">STUDENT PACK</h4>
-            <div class="price">$10.00</div>
-            <ul id="p1-list"><li>Legit Silent Aim Access</li><li>Player & Ship ESP</li></ul>
-            <a href="https://discord.gg/VCQyytP4" class="btn btn-blue" id="p1-btn">Get Student License</a>
-        </div>
-        <div class="price-card vip">
-            <div class="badge">HOT</div>
-            <h4 id="p2-title">VIP ACCESS</h4>
-            <div class="price">$30.00</div>
-            <ul id="p2-list"><li>Rage & Legit Silent Aim Mode</li><li>Full ESP + Item & Chest Filter</li></ul>
-            <a href="https://discord.gg/VCQyytP4" class="btn btn-red" id="p2-btn">Get VIP License</a>
-        </div>
-    </div>
-
-    <div class="section-title" id="specs-head">TECHNICAL SPECIFICATIONS</div>
-    <div class="specs-container" id="specs-body">
-        <div class="spec-row"><span class="spec-label">Supported OS</span><span class="spec-value">Windows 10 / 11</span></div>
-        <div class="spec-row"><span class="spec-label">Bypass</span><span class="spec-value">Kernel Mode (Ring 0)</span></div>
-    </div>
-
     <script>
         const translations = {
             en: {
                 mainSub: 'STATUS: <span>UNDETECTED</span> // PRIVATE BUILD 2026',
                 f1Title: 'Silent Aim', f1Desc: 'Redirects your bullets silently to the enemy\'s head. No screen shake.',
                 f2Title: 'Full ESP (Wallhack)', f2Desc: 'See all enemy pirates, hidden chests through walls clearly.',
-                pricingHead: 'CHOOSE YOUR SUBSCRIPTION',
-                p1Title: 'STUDENT PACK', p2Title: 'VIP ACCESS',
-                specsHead: 'TECHNICAL SPECIFICATIONS'
             },
             tr: {
                 mainSub: 'DURUM: <span>YAKALANMAZ</span> // ÖZEL SÜRÜM 2026',
                 f1Title: 'Sessiz Nişan (Silent Aim)', f1Desc: 'Mermileri çaktırmadan doğrudan rakibin kafasına yönlendirir.',
                 f2Title: 'Full ESP (Duvar Arkası)', f2Desc: 'Adalardaki tüm korsanları ve sandıkları net bir şekilde görün.',
-                pricingHead: 'ABONELİK PAKETİNİ SEÇİN',
-                p1Title: 'ÖĞRENCİ PAKETİ', p2Title: 'VIP ERİŞİM',
-                specsHead: 'TEKNİK ÖZELLİKLER'
             }
         };
 
@@ -177,8 +125,6 @@
             document.getElementById('f1-desc').innerText = translations[lang].f1Desc;
             document.getElementById('f2-title').innerText = translations[lang].f2Title;
             document.getElementById('f2-desc').innerText = translations[lang].f2Desc;
-            document.getElementById('pricing-head').innerText = translations[lang].pricingHead;
-            document.getElementById('specs-head').innerText = translations[lang].specsHead;
         }
     </script>
 </body>
