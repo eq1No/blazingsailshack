@@ -8,7 +8,7 @@
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; }
         
-        /* Siber Arka Plan ve Kıvılcım Alanı kapsayıcısı */
+        /* Siber Arka Plan */
         body { 
             background-color: #050508; 
             background-image: linear-gradient(rgba(18, 18, 26, 0.4) 1px, transparent 1px), linear-gradient(90deg, rgba(18, 18, 26, 0.4) 1px, transparent 1px);
@@ -40,7 +40,6 @@
             opacity: 0;
         }
 
-        /* Her bir kıvılcım için farklı hız ve boyut animasyonları */
         .spark:nth-child(1) { left: 10%; width: 4px; height: 4px; animation-duration: 8s; animation-delay: 1s; }
         .spark:nth-child(2) { left: 25%; width: 6px; height: 6px; animation-duration: 12s; animation-delay: 0s; }
         .spark:nth-child(3) { left: 40%; width: 3px; height: 3px; animation-duration: 7s; animation-delay: 3s; }
@@ -60,13 +59,12 @@
             100% { transform: translateY(-5vh) translateX(-10px) scale(0.5); opacity: 0; }
         }
 
-        /* İçeriklerin kıvılcımların üstünde kalması için z-index ayarı */
         h1, .subtitle, .container, .pricing-title, .pricing-container {
             position: relative;
             z-index: 10;
         }
         
-        /* Neon Başlık Alanı */
+        /* Neon Başlık */
         h1 { font-size: 52px; font-weight: 900; letter-spacing: 3px; text-transform: uppercase; color: #fff; text-shadow: 0 0 15px #ef4444, 0 0 30px #ef4444; margin-bottom: 10px; }
         .subtitle { color: #64748b; font-size: 14px; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 60px; font-weight: bold; }
         .subtitle span { color: #3b82f6; text-shadow: 0 0 8px #3b82f6; }
@@ -85,11 +83,9 @@
         .price-card { background: linear-gradient(145deg, #0e0e14, #151522); border: 2px solid #1e293b; border-radius: 20px; padding: 45px 35px; width: 360px; transition: all 0.4s ease; text-align: center; }
         .price-card:hover { transform: scale(1.03); }
         
-        /* Öğrenci Paketi - Mavi Tema */
         .price-card.student { border-color: #3b82f6; box-shadow: 0 0 20px rgba(59, 130, 246, 0.15); }
         .price-card.student h4 { color: #3b82f6; text-shadow: 0 0 10px rgba(59, 130, 246, 0.5); }
         
-        /* VIP Paket - Kırmızı/Neon Tema */
         .price-card.vip { border-color: #ef4444; box-shadow: 0 0 30px rgba(239, 68, 68, 0.2); position: relative; }
         .price-card.vip h4 { color: #ef4444; text-shadow: 0 0 10px rgba(239, 68, 68, 0.5); }
         .badge { position: absolute; top: 15px; right: 15px; background: #ef4444; color: #fff; font-size: 11px; font-weight: bold; padding: 4px 10px; border-radius: 20px; text-transform: uppercase; }
@@ -125,22 +121,32 @@
         .video-box:hover { border-color: #ef4444; }
         .video-box p { color: #94a3b8; font-size: 12px; font-weight: bold; text-align: left; margin-bottom: 8px; text-transform: uppercase; letter-spacing: 1px; display: flex; align-items: center; gap: 6px; }
         .video-box p::before { content: ""; display: inline-block; width: 8px; height: 8px; background: #ef4444; border-radius: 50%; box-shadow: 0 0 8px #ef4444; }
-        .video-placeholder { 
-            width: 100%; 
-            height: 180px; 
-            background: #161622; 
-            border-radius: 8px; 
-            display: flex; 
-            align-items: center; 
-            justify-content: center; 
-            color: #475569; 
-            font-size: 13px;
-            font-style: italic;
-            border: 1px dashed #334155;
+        .video-placeholder { width: 100%; height: 180px; background: #161622; border-radius: 8px; display: flex; align-items: center; justify-content: center; color: #475569; font-size: 13px; font-style: italic; border: 1px dashed #334155; }
+
+        /* Sol Alt Sabit Discord Alanı */
+        .discord-box {
+            position: fixed;
+            bottom: 25px;
+            left: 25px;
+            width: 300px;
+            background: #111219;
+            border: 2px solid #1e293b;
+            border-radius: 14px;
+            padding: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.7);
+            z-index: 1000;
+            text-align: left;
+            transition: border-color 0.3s;
         }
+        .discord-box:hover { border-color: #5865F2; }
+        .discord-title { color: #5865F2; font-size: 12px; font-weight: bold; margin-bottom: 8px; text-transform: uppercase; letter-spacing: 1px; }
+        .discord-info { color: #fff; font-size: 15px; font-weight: bold; margin-bottom: 4px; }
+        .discord-status { color: #22c55e; font-size: 12px; margin-bottom: 15px; }
+        .discord-btn { display: block; width: 100%; text-align: center; padding: 10px; background: #5865F2; color: white; text-decoration: none; font-weight: bold; border-radius: 8px; font-size: 13px; transition: background 0.2s; }
+        .discord-btn:hover { background: #4752c4; }
 
         @media (max-width: 768px) {
-            .video-box { position: static; width: 100%; max-width: 360px; margin: 40px auto 0 auto; }
+            .video-box, .discord-box { position: static; width: 100%; max-width: 360px; margin: 40px auto 0 auto; }
         }
     </style>
 </head>
@@ -180,7 +186,6 @@
     <div class="pricing-title">CHOOSE YOUR SUBSCRIPTION</div>
 
     <div class="pricing-container">
-        
         <div class="price-card student">
             <h4>STUDENT PACK</h4>
             <div class="desc">Bütçe dostu, tam performans odaklı başlangıç</div>
@@ -191,7 +196,7 @@
                 <li>Standard HWID Activation</li>
                 <li>Weekly Key Format</li>
             </ul>
-            <a href="#" class="btn btn-blue">Get Student License</a>
+            <a href="https://discord.gg/VCQyytP4" target="_blank" class="btn btn-blue">Get Student License</a>
         </div>
         
         <div class="price-card vip">
@@ -206,9 +211,8 @@
                 <li>7/24 VIP Discord Live Support</li>
                 <li>Monthly VIP Key + Auto Updates</li>
             </ul>
-            <a href="#" class="btn btn-red">Get VIP License</a>
+            <a href="https://discord.gg/VCQyytP4" target="_blank" class="btn btn-red">Get VIP License</a>
         </div>
-        
     </div>
 
     <div class="video-box">
@@ -216,6 +220,13 @@
         <div class="video-placeholder">
             [ Senin Hazırlayacağın Video Buraya Gelecek ]
         </div>
+    </div>
+
+    <div class="discord-box">
+        <div class="discord-title">Join Our Community</div>
+        <div class="discord-info">Official Discord Server</div>
+        <div class="discord-status">● Customer Support Online</div>
+        <a href="https://discord.gg/VCQyytP4" target="_blank" class="discord-btn">Join Discord</a>
     </div>
 
 </body>
